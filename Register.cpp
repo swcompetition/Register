@@ -52,14 +52,14 @@ void Register::init() {
 
     // Parse Read Register 2
     for (int i = start_regtwo; i < start_regtwo + RR_TWO; i++) {
-        readReg_one_bits[idx_val] = full_reg_address[start_regtwo+idx_val];
+        readReg_two_bits[idx_val] = full_reg_address[start_regtwo+idx_val];
         idx_val++;
     }
     idx_val = 0;
 
     // Parse Write Register
     for (int i = start_wr; i < start_wr + RR_TWO; i++) {
-        readReg_one_bits[idx_val] = full_reg_address[start_wr+idx_val];
+        writeReg_bits[idx_val] = full_reg_address[start_wr+idx_val];
         idx_val++;
     }
 }
