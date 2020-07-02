@@ -1,5 +1,6 @@
 #include "Register.h"
 
+#if defined(TEST_DEBUG)
 /**
  * For testing purpose, use value from string.
  * Basically this constructor will use full_reg_address value based on tmp value. 
@@ -14,6 +15,7 @@ Register::Register(string& tmp) {
         full_reg_address[i] = (tmp.at(i) - '0');
     }
 }
+#endif
 
 Register::Register() {
     init();

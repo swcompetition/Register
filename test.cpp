@@ -1,5 +1,7 @@
 #include <iostream>
 
+#define TEST_DEBUG
+
 using namespace std;
 
 int main(void) {

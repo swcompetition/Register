@@ -25,7 +25,9 @@ public:
     bool readReg_one_bits[RR_ONE] = {0};
     bool readReg_two_bits[RR_TWO] = {0};
     bool writeReg_bits[WR_BITS] = {0};
+#if defined(TEST_DEBUG)
     Register(string& tmp);
+#endif
     Register();
     void init();
 };
