@@ -1,8 +1,4 @@
-#include <iostream>
-
-#define TEST_DEBUG
-
-using namespace std;
+#include "Register.h"
 
 int main(void) {
     return 0;

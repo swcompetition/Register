@@ -6,6 +6,7 @@ using namespace std;
 #define RR_ONE 5
 #define RR_TWO 5
 #define WR_BITS 5
+#define TEST_DEBUG
 class Register {
 private:
     // For now, let's say there is bit array for storing bits.
