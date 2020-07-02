@@ -14,6 +14,7 @@ Register::Register(string& tmp) {
     for (int i = 0; i < MAX_BITS; i++) {
         full_reg_address[i] = (tmp.at(i) - '0');
     }
+    init();
 }
 #endif
 
@@ -37,28 +38,28 @@ void Register::init() {
 
     // Parse OPCODE
     for (int i = start_opcode; i < start_opcode+OPCODE_BITS; i++) {
-        opcode_bits[idx_val] = full_reg_address[OPCODE_BITS+idx_val];
+        opcode_bits[idx_val] = full_reg_address[start_opcode+idx_val];
         idx_val++;
     }
     idx_val = 0;
 
     // Parse Read Register 1
     for (int i = start_regone; i < start_regone + RR_ONE; i++) {
-        readReg_one_bits[idx_val] = full_reg_address[RR_ONE+idx_val];
+        readReg_one_bits[idx_val] = full_reg_address[start_regone+idx_val];
         idx_val++;
     }
     idx_val = 0;
 
     // Parse Read Register 2
     for (int i = start_regtwo; i < start_regtwo + RR_TWO; i++) {
-        readReg_one_bits[idx_val] = full_reg_address[RR_TWO+idx_val];
+        readReg_one_bits[idx_val] = full_reg_address[start_regtwo+idx_val];
         idx_val++;
     }
     idx_val = 0;
 
     // Parse Write Register
     for (int i = start_wr; i < start_wr + RR_TWO; i++) {
-        readReg_one_bits[idx_val] = full_reg_address[WR_BITS+idx_val];
+        readReg_one_bits[idx_val] = full_reg_address[start_wr+idx_val];
         idx_val++;
     }
 }
