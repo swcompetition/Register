@@ -1,4 +1,4 @@
-CC=g++-9
+CC=g++-10.1
 CFLAGS=-Wall -O3
 TARGET=app.out
 OBJS=test.o\
