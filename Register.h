@@ -61,15 +61,16 @@ public:
         // Parse Read Register 2
         cout << "RR2: ";
         for (int i = start_regtwo; i < start_regtwo + RR_TWO; i++) {
-            cout << readReg_one_bits[idx_val] << " ";
+            cout << readReg_two_bits[idx_val] << " ";
             idx_val++;
         }
         cout << endl;
         idx_val = 0;
 
+        cout << "Write Register: ";
         // Parse Write Register
         for (int i = start_wr; i < start_wr + RR_TWO; i++) {
-            cout << readReg_one_bits[idx_val] << " ";
+            cout << writeReg_bits[idx_val] << " ";
             idx_val++;
         }
         cout << endl;
