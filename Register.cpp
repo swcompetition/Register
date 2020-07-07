@@ -58,8 +58,23 @@ void Register::init() {
     idx_val = 0;
 
     // Parse Write Register
+    rd_destination = 0;
     for (int i = start_wr; i < start_wr + RR_TWO; i++) {
         writeReg_bits[idx_val] = full_reg_address[start_wr+idx_val];
+        rd_destination += pow(2, idx_val) * writeReg_bits[idx_val];
         idx_val++;
     }
+}
+
+/**
+ * Since this function called, it means "Write Data" signal is set to "true"
+ * which means we have to write some alu-result data to write register.
+ * 
+ * Since we are implementing MIPS simulator on C++/High-Level, we need to declare some
+ * array to store data.(We can't just store real MIPS register though)
+ * 
+ * So, this function will be just store alu-result, which would be "value" to rd_container.
+ */
+void Register::setRDValue(int& value) {
+    rd_container[rd_destination] = value;
 }
