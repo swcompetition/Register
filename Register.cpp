@@ -78,3 +78,49 @@ void Register::init() {
 void Register::setRDValue(int& value) {
     rd_container[rd_destination] = value;
 }
+
+// For testing purpose
+#if defined(TEST_DEBUG)
+void Register::printArray() {
+    const int start_opcode = 0;
+    const int start_regone = 6;
+    const int start_regtwo = 11;
+    const int start_wr = 16;
+    int idx_val = 0;
+
+    // Parse OPCODE
+    cout << "OPCODE: ";
+    for (int i = start_opcode; i < start_opcode+OPCODE_BITS; i++) {
+        cout << opcode_bits[idx_val] << " ";
+        idx_val++;
+    }
+    cout << endl;
+    idx_val = 0;
+
+    // Parse Read Register 1
+    cout << "RR1: ";
+    for (int i = start_regone; i < start_regone + RR_ONE; i++) {
+        cout << readReg_one_bits[idx_val] << " ";
+        idx_val++;
+    }
+    cout << endl;
+    idx_val = 0;
+
+    // Parse Read Register 2
+    cout << "RR2: ";
+    for (int i = start_regtwo; i < start_regtwo + RR_TWO; i++) {
+        cout << readReg_two_bits[idx_val] << " ";
+        idx_val++;
+    }
+    cout << endl;
+    idx_val = 0;
+
+    cout << "Write Register: ";
+    // Parse Write Register
+    for (int i = start_wr; i < start_wr + RR_TWO; i++) {
+        cout << writeReg_bits[idx_val] << " ";
+        idx_val++;
+    }
+    cout << endl;
+}
+#endif
