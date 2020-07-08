@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cmath>
+
+#include "RMem.h"
+
 using namespace std;
 
 #define MAX_BITS 32
@@ -17,6 +20,7 @@ private:
     // It is written in CPP, therefore we need to check RD value correctly based on binary value
     int rd_container[MAX_WRITE_REG] = {0};
     int rd_destination;
+    RMem register_memory;
 public:
     /**
      * Needs:
@@ -37,6 +41,7 @@ public:
 #endif
     Register();
     void init();
+    void forward();
     void setRDValue(int& value);
 
 #if defined(TEST_DEBUG)

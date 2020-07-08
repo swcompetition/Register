@@ -67,6 +67,20 @@ void Register::init() {
 }
 
 /**
+ * Forward values to ALU
+ * source to forward(addr): RS/RT --> readReg_one_bits, readReg_two_bits
+ * Actual value will be forwarded in binary format.
+ */
+void Register::forward() {
+    int rs_idx = register_memory.conv_bin_dec_idx(readReg_one_bits, RR_ONE);
+    int rt_idx = register_memory.conv_bin_dec_idx(readReg_two_bits, RR_TWO);
+
+    // Those boolean value is CREATED from R-Mem, dynamically
+    bool* rs_forward = register_memory.get_actual_bin(rs_idx);
+    bool* rt_forward = register_memory.get_actual_bin(rt_idx);
+}
+
+/**
  * Since this function called, it means "Write Data" signal is set to "true"
  * which means we have to write some alu-result data to write register.
  * 

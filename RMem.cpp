@@ -67,3 +67,12 @@ int RMem::conv_bin_dec_idx(bool* bits, int& bitidx) {
     }
     return ret_val;
 }
+
+int RMem::conv_bin_dec_idx(bool* bits, const int& bitidx) {
+    int ret_val = 0;
+
+    for (int i = 0; i < bitidx; i++) {
+        ret_val += pow(2, (bitidx - 1) - i) * bits[i];
+    }
+    return ret_val;
+}
