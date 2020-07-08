@@ -11,5 +11,5 @@ public:
     bool* get_actual_bin(int& idx);
     void set_actual_dec(int& idx, int& value);
     void set_actual_bin(int& idx, bool* value, int& bitidx);
-    int conv_bin_dec_idx(bool* bits);
+    int conv_bin_dec_idx(bool* bits, int& bitidx);
 };
