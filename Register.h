@@ -18,7 +18,6 @@ private:
     bool full_reg_address[MAX_BITS] = {0};
 
     // It is written in CPP, therefore we need to check RD value correctly based on binary value
-    int rd_container[MAX_WRITE_REG] = {0};
     int rd_destination;
     RMem register_memory;
 public:

@@ -87,10 +87,10 @@ void Register::forward() {
  * Since we are implementing MIPS simulator on C++/High-Level, we need to declare some
  * array to store data.(We can't just store real MIPS register though)
  * 
- * So, this function will be just store alu-result, which would be "value" to rd_container.
+ * So, this function will be just store alu-result, which would be "value" to register_mem's container.
  */
 void Register::setRDValue(int& value) {
-    rd_container[rd_destination] = value;
+    register_memory.set_actual_dec(rd_destination, value);
 }
 
 // For testing purpose
