@@ -53,3 +53,18 @@ void RMem::set_actual_bin(int& idx, bool* value, int& bitidx) {
 void RMem::set_actual_dec(int& idx, int& value) {
     rmem_store[idx] = value;
 }
+
+
+/**
+ * For converting some bits to idx value
+ * binaries --> decimal
+ */
+int RMem::conv_bin_dec_idx(bool* bits) {
+    int ret_val = 0;
+    int arr_size = sizeof(bits) / sizeof(bits[0]);
+
+    for (int i = 0; i < arr_size; i++) {
+        ret_val += pow(2, i) * bits[i];
+    }
+    return ret_val;
+}
