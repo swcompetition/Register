@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <cmath>
 #define MAX_REGISTER_CTR 32
