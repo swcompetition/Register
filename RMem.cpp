@@ -23,7 +23,7 @@ bool* RMem::get_actual_bin(int& idx) {
 
     dep_idx = tmp_idx;
     /* TODO: Make sure this bool is deleted after use. */
-    tmp_dep = new bool[tmp_idx];
+    tmp_dep = new bool[MAX_REGISTER_CTR];
     for (int i = 0; i < tmp_idx; i++) {
         tmp_dep[i] = tmp[dep_idx-1];
         dep_idx--;

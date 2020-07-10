@@ -38,6 +38,7 @@ public:
 #if defined(TEST_DEBUG)
     Register(string& tmp);
 #endif
+    Register(string& rs, string&rt, string& rd);
     Register();
     void init();
     void forward();

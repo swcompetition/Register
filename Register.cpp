@@ -22,6 +22,24 @@ Register::Register() {
     init();
 }
 
+Register::Register(string& rs, string&rt, string& rd) {
+    rd_destination = 0;
+    for (int i = 0; i < RR_ONE; i++) {
+        readReg_one_bits[i] = rs.at(i) - '0';
+    }
+
+    for (int i = 0; i < RR_TWO; i++) {
+        readReg_two_bits[i] = rt.at(i) - '0';
+    }
+
+    for (int i = 0; i < WR_BITS; i++) {
+        writeReg_bits[i] = rd.at(i) - '0';
+        rd_destination += pow(2, i) * writeReg_bits[i];
+    }
+
+    forward();
+}
+
 /**
  * Parse OPCODE, Read Register(1/2), Write Register
  * from "full_reg_address", which is full 32-bit-binary formed 
