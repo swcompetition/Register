@@ -75,3 +75,10 @@ int RMem::conv_bin_dec_idx(bool* bits, const int& bitidx) {
     }
     return ret_val;
 }
+
+int RMem::get_value(int& idx) {
+    return this->rmem_store[idx];
+}
+int RMem::get_value(const int& idx) {
+    return this->rmem_store[idx];
+}

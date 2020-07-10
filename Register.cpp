@@ -53,10 +53,19 @@ void Register::setRDValue(int& value) {
     register_memory.set_actual_dec(rd_destination, value);
 }
 
+void Register::setRDValue(bool* bits) {
+    int max = 32;
+    register_memory.set_actual_bin(rd_destination, bits, max);
+}
+
 bool* Register::get_rs_forward() {
     return this->rs_forward_bits;
 }
 
 bool* Register::get_rt_forward() {
     return this->rt_forward_bits;
+}
+
+int Register::getRDValue() {
+    return this->register_memory.get_value(rd_destination);
 }

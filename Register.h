@@ -46,4 +46,6 @@ public:
     Register();
     void forward();
     void setRDValue(int& value);
+    void setRDValue(bool* bits);
+    int getRDValue();
 };
