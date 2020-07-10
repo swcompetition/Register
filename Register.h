@@ -42,7 +42,7 @@ public:
     bool* get_rs_forward();
     bool* get_rt_forward();
 
-    void initRegister(string& rs, string& rt, string& rd);
+    void initRegister(const string& rs, const string& rt, const string& rd);
     Register();
     void forward();
     void setRDValue(int& value);
