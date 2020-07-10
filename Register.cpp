@@ -34,9 +34,9 @@ void Register::forward() {
     int rs_idx = register_memory.conv_bin_dec_idx(readReg_one_bits, RR_ONE);
     int rt_idx = register_memory.conv_bin_dec_idx(readReg_two_bits, RR_TWO);
 
-    // Those boolean value is CREATED from R-Mem, dynamically
-    bool* rs_forward = register_memory.get_actual_bin(rs_idx);
-    bool* rt_forward = register_memory.get_actual_bin(rt_idx);
+    // Those boolean value is CREATED from R-Mem, statically
+    register_memory.get_actual_bin(rs_idx, rs_forward_bits);
+    register_memory.get_actual_bin(rt_idx, rt_forward_bits);
 }
 
 /**

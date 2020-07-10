@@ -10,26 +10,25 @@ int RMem::get_actual_dec(int& idx) {
 /**
  * return register-stored value in BINARY
  */
-bool* RMem::get_actual_bin(int& idx) {
-    bool tmp[MAX_REGISTER_CTR] = {0}; // Reverse-Order store value
-    bool* tmp_dep; // actual order store value - will be returned
+void RMem::get_actual_bin(int& idx, bool return_value[]) {
+    for (int i = 0; i < MAX_REGISTER_CTR; i++) {
+        return_value[i] = 0;
+    }
     int target_value = rmem_store[idx]; // Decimal value of register
-    int tmp_idx = 0; // for converting decimal to binary
-    int dep_idx; // for storing temp idx
+
+    string tmp_str = "";
     while (target_value != 0) {
-        tmp[tmp_idx++] = target_value % 2;
+        tmp_str += (target_value % 2) + '0';
         target_value /= 2;
     }
-
-    dep_idx = tmp_idx;
-    /* TODO: Make sure this bool is deleted after use. */
-    tmp_dep = new bool[MAX_REGISTER_CTR];
-    for (int i = 0; i < tmp_idx; i++) {
-        tmp_dep[i] = tmp[dep_idx-1];
-        dep_idx--;
+    int str_iter = tmp_str.length() - 1;
+    for (int i = 0; i < MAX_REGISTER_CTR; i++) {
+        if (i < MAX_REGISTER_CTR - tmp_str.length()) {
+            return_value[i] = 0;
+        } else {
+            return_value[i] = tmp_str.at(str_iter--) - '0';
+        }
     }
-
-    return tmp_dep;
 }
 
 /**

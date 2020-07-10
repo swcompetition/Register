@@ -35,6 +35,9 @@ public:
     bool readReg_one_bits[RR_ONE] = {0}; // RS --> to ALU First operand
     bool readReg_two_bits[RR_TWO] = {0}; // RT --> to ALU Second operand
     bool writeReg_bits[WR_BITS] = {0}; // RD
+
+    bool rs_forward_bits[MAX_WRITE_REG] = {0};
+    bool rt_forward_bits[MAX_WRITE_REG] = {0};
     void initRegister(string& rs, string& rt, string& rd);
     Register();
     void forward();
