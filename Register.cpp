@@ -7,7 +7,8 @@ Register::Register() {
  * Init Register
  * forwarded from i-mem
  */
-void Register::initRegister(const string& rs, const string& rt, const string& rd) {
+void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd) {
+    register_memory = reg_mem;
     rd_destination = 0;
     for (int i = 0; i < RR_ONE; i++) {
         readReg_one_bits[i] = rs.at(i) - '0';
