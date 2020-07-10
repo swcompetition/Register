@@ -35,16 +35,8 @@ public:
     bool readReg_one_bits[RR_ONE] = {0}; // RS --> to ALU First operand
     bool readReg_two_bits[RR_TWO] = {0}; // RT --> to ALU Second operand
     bool writeReg_bits[WR_BITS] = {0}; // RD
-#if defined(TEST_DEBUG)
-    Register(string& tmp);
-#endif
-    Register(string& rs, string&rt, string& rd);
+    void initRegister(string& rs, string& rt, string& rd);
     Register();
-    void init();
     void forward();
     void setRDValue(int& value);
-
-#if defined(TEST_DEBUG)
-    void printArray();
-#endif
 };
