@@ -12,6 +12,7 @@ public:
     int get_actual_dec(int& idx);
     void get_actual_bin(int& idx, bool return_value[]);
     void set_actual_dec(int& idx, int& value);
+    void set_actual_dec(int& idx, const int& value);
     void set_actual_bin(int& idx, bool* value, int& bitidx);
     int conv_bin_dec_idx(bool* bits, int& bitidx);
     int conv_bin_dec_idx(bool* bits, const int& bitidx);

@@ -53,6 +53,10 @@ void RMem::set_actual_dec(int& idx, int& value) {
     rmem_store[idx] = value;
 }
 
+void RMem::set_actual_dec(int& idx, const int& value) {
+    rmem_store[idx] = value;
+}
+
 
 /**
  * For converting some bits to idx value
