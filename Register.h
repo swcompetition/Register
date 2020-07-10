@@ -38,6 +38,10 @@ public:
 
     bool rs_forward_bits[MAX_WRITE_REG] = {0};
     bool rt_forward_bits[MAX_WRITE_REG] = {0};
+
+    bool* get_rs_forward();
+    bool* get_rt_forward();
+
     void initRegister(string& rs, string& rt, string& rd);
     Register();
     void forward();

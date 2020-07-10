@@ -51,3 +51,11 @@ void Register::forward() {
 void Register::setRDValue(int& value) {
     register_memory.set_actual_dec(rd_destination, value);
 }
+
+bool* Register::get_rs_forward() {
+    return this->rs_forward_bits;
+}
+
+bool* Register::get_rt_forward() {
+    return this->rt_forward_bits;
+}
