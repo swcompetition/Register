@@ -8,6 +8,9 @@ Register::Register() {
  * forwarded from i-mem
  */
 void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd) {
+    cout << "RS: " << rs << endl;
+    cout << "RT: " << rt << endl;
+    cout << "RD: " << rd << endl;
     register_memory = reg_mem;
     rd_destination = 0;
     for (int i = 0; i < RR_ONE; i++) {
