@@ -1,6 +1,7 @@
 #include "Register.h"
 
-Register::Register() {
+Register::Register(Control& share_control) {
+    this->ctr_signal = share_control;
 }
 
 /**
@@ -53,12 +54,16 @@ void Register::forward() {
  * So, this function will be just store alu-result, which would be "value" to register_mem's container.
  */
 void Register::setRDValue(int& value) {
-    register_memory.set_actual_dec(rd_destination, value);
+    if (ctr_signal.getRegWrite()) {
+        register_memory.set_actual_dec(rd_destination, value);
+    }
 }
 
 void Register::setRDValue(bool* bits) {
     int max = 32;
-    register_memory.set_actual_bin(rd_destination, bits, max);
+    if (ctr_signal.getRegWrite()) {
+        register_memory.set_actual_bin(rd_destination, bits, max);
+    }
 }
 
 bool* Register::get_rs_forward() {
