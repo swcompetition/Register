@@ -21,7 +21,7 @@ private:
     // It is written in CPP, therefore we need to check RD value correctly based on binary value
     int rd_destination;
     RMem register_memory;
-    Control ctr_signal;
+    Control* ctr_signal;
 public:
     /**
      * Needs:
@@ -45,7 +45,7 @@ public:
     bool* get_rt_forward();
 
     void initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd);
-    Register(Control& share_control);
+    Register(Control* share_control);
     void forward();
     void setRDValue(int& value);
     void setRDValue(bool* bits);
