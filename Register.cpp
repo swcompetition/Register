@@ -22,9 +22,17 @@ void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, c
         readReg_two_bits[i] = rt.at(i) - '0';
     }
 
-    for (int i = 0; i < WR_BITS; i++) {
-        writeReg_bits[i] = rd.at(i) - '0';
-        rd_destination += pow(2, i) * writeReg_bits[i];
+    if (ctr_signal->getRegWrite()) {
+        for (int i = 0; i < WR_BITS; i++) {
+            writeReg_bits[i] = rd.at(i) - '0';
+            rd_destination += pow(2, i) * writeReg_bits[i];
+        }
+    } else {
+        // Regwrite on false(0) means its not r-type, therefore readreg_two_bits would be rd value.
+        for (int i = 0; i < WR_BITS; i++) {
+            writeReg_bits[i] = readReg_two_bits[i];
+            rd_destination += pow(2, i) * writeReg_bits[i];
+        }
     }
 
     forward();
