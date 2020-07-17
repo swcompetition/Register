@@ -36,6 +36,7 @@ public:
     bool opcode_bits[OPCODE_BITS] = {0}; // OPCODE --> to Control
     bool readReg_one_bits[RR_ONE] = {0}; // RS --> to ALU First operand
     bool readReg_two_bits[RR_TWO] = {0}; // RT --> to ALU Second operand
+    bool shamt_bits[RR_ONE] = {0};
     bool writeReg_bits[WR_BITS] = {0}; // RD
 
     bool rs_forward_bits[MAX_WRITE_REG] = {0};
@@ -44,7 +45,7 @@ public:
     bool* get_rs_forward();
     bool* get_rt_forward();
 
-    void initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd);
+    void initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd, const string& shamtcode);
     Register(Control* share_control);
     void forward();
     void setRDValue(int& value);

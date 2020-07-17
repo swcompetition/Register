@@ -8,7 +8,7 @@ Register::Register(Control* share_control) {
  * Init Register
  * forwarded from i-mem
  */
-void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd) {
+void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd, const string& shamtcode) {
     cout << "RS: " << rs << endl;
     cout << "RT: " << rt << endl;
     cout << "RD: " << rd << endl;
@@ -16,6 +16,7 @@ void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, c
     rd_destination = 0;
     for (int i = 0; i < RR_ONE; i++) {
         readReg_one_bits[i] = rs.at(i) - '0';
+        shamt_bits[i] = shamtcode.at(i) - '0';
     }
 
     for (int i = 0; i < RR_TWO; i++) {
@@ -45,11 +46,23 @@ void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, c
  */
 void Register::forward() {
     int rs_idx = register_memory.conv_bin_dec_idx(readReg_one_bits, RR_ONE);
-    int rt_idx = register_memory.conv_bin_dec_idx(readReg_two_bits, RR_TWO);
+    int rt_idx;
+    if (ctr_signal->getShamtSignal()) {
+        rt_idx = register_memory.conv_bin_dec_idx(shamt_bits, RR_ONE);
+    } else {
+        rt_idx = register_memory.conv_bin_dec_idx(readReg_two_bits, RR_TWO);
+    }
 
     // Those boolean value is CREATED from R-Mem, statically
     register_memory.get_actual_bin(rs_idx, rs_forward_bits);
-    register_memory.get_actual_bin(rt_idx, rt_forward_bits);
+    if (ctr_signal->getShamtSignal()) {
+        // Just access dec to bin
+        ctr_signal->conv_dec_to_bin(rt_idx, rt_forward_bits);
+    } else {
+        // Need to access R-Mem
+        register_memory.get_actual_bin(rt_idx, rt_forward_bits);
+    }
+    
 }
 
 /**
