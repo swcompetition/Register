@@ -12,8 +12,13 @@ Register::Register() {
  * forwarded from i-mem
  */
 void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, const string& rd, const string& shamtcode) {
-    cout << "RS: " << rs << endl;
-    cout << "RT: " << rt << endl;
+
+    bool arr[RR_ONE];
+    ctr_signal.str_to_bool(rs, RR_ONE, arr);
+    cout << "RS: " << rs << " --> real_val = " << reg_mem.get_value(ctr_signal.conv_bin_dec_idx(arr, RR_ONE)) << endl;
+
+    ctr_signal.str_to_bool(rt, RR_TWO, arr);
+    cout << "RT: " << rt << " --> real_val = " << reg_mem.get_value(ctr_signal.conv_bin_dec_idx(arr, RR_ONE)) << endl;
     cout << "RD: " << rd << endl;
     cout << "Shamt: " << shamtcode << endl;
     register_memory = reg_mem;
@@ -32,7 +37,8 @@ void Register::initRegister(RMem& reg_mem, const string& rs, const string& rt, c
             writeReg_bits[i] = rd.at(i) - '0';
             rd_destination += pow(2, i) * writeReg_bits[i];
         }
-    } else {
+    }
+    else {
         // Regwrite on false(0) means its not r-type, therefore readreg_two_bits would be rd value.
         for (int i = 0; i < WR_BITS; i++) {
             writeReg_bits[i] = readReg_two_bits[i];
@@ -54,7 +60,8 @@ void Register::forward() {
     if (ctr_signal.getShamtSignal()) {
         rt_idx = register_memory.conv_bin_dec_idx(shamt_bits, RR_ONE);
         cout << "IS SHAMT" << endl;
-    } else {
+    }
+    else {
         rt_idx = register_memory.conv_bin_dec_idx(readReg_two_bits, RR_TWO);
     }
 
@@ -63,11 +70,12 @@ void Register::forward() {
     if (ctr_signal.getShamtSignal()) {
         // Just access dec to bin
         ctr_signal.conv_dec_to_bin(register_memory.get_value(rt_idx), rt_forward_bits);
-    } else {
+    }
+    else {
         // Need to access R-Mem
         register_memory.get_actual_bin(rt_idx, rt_forward_bits);
     }
-    
+
 }
 
 void Register::setControl(Control& share_ctr) {
@@ -77,10 +85,10 @@ void Register::setControl(Control& share_ctr) {
 /**
  * Since this function called, it means "Write Data" signal is set to "true"
  * which means we have to write some alu-result data to write register.
- * 
+ *
  * Since we are implementing MIPS simulator on C++/High-Level, we need to declare some
  * array to store data.(We can't just store real MIPS register though)
- * 
+ *
  * So, this function will be just store alu-result, which would be "value" to register_mem's container.
  */
 void Register::setRDValue(int& value) {
